@@ -1,7 +1,7 @@
 package com.inchworks.url_shortener.service;
 
 import com.inchworks.url_shortener.constants.AppConstants;
-import com.inchworks.url_shortener.util.CommonUtils;
+import com.inchworks.url_shortener.util.HashUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
@@ -16,9 +16,9 @@ class URLShortenerServiceTest {
         String userId = "user123";
         String longUrl = "https://example.com";
 
-        try (MockedStatic<CommonUtils> mockedStatic = mockStatic(CommonUtils.class)) {
+        try (MockedStatic<HashUtils> mockedStatic = mockStatic(HashUtils.class)) {
             // Mock the static method
-            mockedStatic.when(() -> CommonUtils.generateShortHash(userId, longUrl))
+            mockedStatic.when(() -> HashUtils.generateShortHash(userId, longUrl))
                     .thenReturn("abc12345");
 
             String shortUrl = urlShortenerService.generateShortUrl(userId, longUrl);
@@ -32,8 +32,8 @@ class URLShortenerServiceTest {
         String userId = "user456";
         String longUrl = "https://spring.io";
 
-        try (MockedStatic<CommonUtils> mockedStatic = mockStatic(CommonUtils.class)) {
-            mockedStatic.when(() -> CommonUtils.generateShortHash(userId, longUrl))
+        try (MockedStatic<HashUtils> mockedStatic = mockStatic(HashUtils.class)) {
+            mockedStatic.when(() -> HashUtils.generateShortHash(userId, longUrl))
                     .thenReturn("xyz98765");
 
             String shortUrl = urlShortenerService.generateShortUrl(userId, longUrl);
